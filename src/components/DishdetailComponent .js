@@ -1,46 +1,54 @@
 import React, { Component } from 'react';
 import { Card, CardTitle, CardImg, CardText, CardBody} from 'reactstrap';
 
-class Dish extends Component {
-
-  render() {
-    if(this.props.dishes){
-      const detail = this.props.dishes.comments.map((dishs)=>{
-        return (
-          <div key={dishs.id}>
-            <p>{dishs.comment}</p>
-            <p>-- {dishs.author}, {new Intl.DateTimeFormat('en-US', { year: 'numeric', month: 'short', day: '2-digit'}).format(new Date(Date.parse(dishs.date)))}</p>
-          </div>
-        );
-      });
-    
-    return (
-      <div className="container">
-        <div className="row">
-          <div className="col-12 col-md-5 m-1">
-            <Card>
-              <CardImg top src={this.props.dishes.image} alt={this.props.dishes.name} />
-              <CardBody>
-                <CardTitle>{this.props.dishes.name}</CardTitle>
-                <CardText>{this.props.dishes.description}</CardText>
-              </CardBody>
-            </Card>
-          </div>
-
-          <div className="col-12 col-md-5">
-            <Card>
-              <CardTitle>Comments</CardTitle>
-              {detail}
-            </Card>
-          </div>
-        </div>
-      </div>
+  function RenderDish({dish}) {
+    return(
+    <Card>
+      <CardImg top src={dish.image} alt={dish.name} />
+      <CardBody>
+        <CardTitle>{dish.name}</CardTitle>
+        <CardText>{dish.description}</CardText>
+      </CardBody>
+    </Card>
     );
   }
-  else{
-    return (<div></div>);
+
+  function RenderComments({comments}) {
+    if ({comments}){
+    const detail = comments.map((dishes)=>{
+      return (
+        <div key={dishes.id}>
+          <p>{dishes.comment}</p>
+          <p>-- {dishes.author}, {new Intl.DateTimeFormat('en-US', { year: 'numeric', month: 'short', day: '2-digit'}).format(new Date(Date.parse(dishes.date)))}</p>
+        </div>
+      );
+    });
+    return detail;
+    }
   }
+
+  const Dish = (props) => {
+    if(props.dishes){
+      return (
+        <div className="container">
+          <div className="row">
+            <div className="col-12 col-md-5 m-1">
+              <RenderDish dish={props.dishes} />
+            </div>
+  
+            <div className="col-12 col-md-5 m-1">
+              <Card>
+                <CardTitle>Comments</CardTitle>
+                <RenderComments comments={props.dishes.comments} />
+              </Card>
+            </div>
+          </div>
+        </div>
+      );
+    }
+    else{
+      return (<div></div>);
+    }
   }
-};
 
 export default Dish;
