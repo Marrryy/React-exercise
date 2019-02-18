@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Card, CardTitle, CardImg, CardText, CardBody} from 'reactstrap';
 
   function RenderDish({dish}) {
