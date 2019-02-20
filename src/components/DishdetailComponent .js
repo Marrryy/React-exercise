@@ -14,7 +14,6 @@ import { Link } from 'react-router-dom';
   }
 
   function RenderComments({comments}) {
-    if ({comments}){
     const detail = comments.map((dishes)=>{
       return (
         <div key={dishes.id}>
@@ -24,7 +23,6 @@ import { Link } from 'react-router-dom';
       );
     });
     return detail;
-    }
   }
 
   const Dish = (props) => {
