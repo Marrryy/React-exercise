@@ -16,10 +16,6 @@ class Contact extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   };
 
-
-  
-
-
   handleSubmit(values) {
     console.log('Current State is: ' + JSON.stringify(values));
     alert('Current State is: ' + JSON.stringify(values));
@@ -83,26 +79,26 @@ class Contact extends Component {
           </div>
           <div className="col-12 col-md-9">
             <LocalForm onSubmit={(values) => this.handleSubmit(values)}>
-            <Row className="form-group">
-                  <Label htmlFor="firstname" md={2}>First Name</Label>
-                  <Col md={10}>
-                      <Control.text model=".firstname" id="firstname" name="firstname"
-                          placeholder="First Name"
-                          className="form-control"
-                          validators={{
-                              required, minLength: minLength(3), maxLength: maxLength(15)
-                          }}
-                            />
-                      <Errors
-                          className="text-danger"
-                          model=".firstname"
-                          show="touched"
-                          messages={{
-                              required: 'Required',
-                              minLength: 'Must be greater than 2 characters',
-                              maxLength: 'Must be 15 characters or less'
-                          }}
+              <Row className="form-group">
+                <Label htmlFor="firstname" md={2}>First Name</Label>
+                <Col md={10}>
+                  <Control.text model=".firstname" id="firstname" name="firstname"
+                      placeholder="First Name"
+                      className="form-control"
+                      validators={{
+                          required, minLength: minLength(3), maxLength: maxLength(15)
+                      }}
                         />
+                  <Errors
+                      className="text-danger"
+                      model=".firstname"
+                      show="touched"
+                      messages={{
+                          required: 'Required',
+                          minLength: 'Must be greater than 2 characters',
+                          maxLength: 'Must be 15 characters or less'
+                      }}
+                    />
                   </Col>
               </Row>
               <Row className="form-group">
