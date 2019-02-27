@@ -50,7 +50,9 @@ import { Link } from 'react-router-dom';
               <Card>
                 <CardTitle>Comments</CardTitle>
                 <RenderComments comments={props.comments} />
-                <CommentForm/>
+                <CommentForm comments={props.comments}
+                  addComment={props.addComment}
+                  dishId={props.dish.id}/>
               </Card>
             </div>
           </div>

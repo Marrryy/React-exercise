@@ -27,7 +27,7 @@ class Comment extends Component {
 
   handleSubmit(values) {
     console.log('Current State is: ' + JSON.stringify(values));
-    alert('Current State is: ' + JSON.stringify(values));
+    this.props.addComment(this.props.dishId, values.rating, values.author, values.comment);
   }
 
   render() {
@@ -44,7 +44,7 @@ class Comment extends Component {
 
                 <Label htmlFor="rating" >Ratings</Label>
                 <Control.select model=".rating" name="rating"
-                  className="form-control" >
+                  className="form-control" defaultValue="1" >
                   <option>1</option>
                   <option>2</option>
                   <option>3</option>
@@ -58,15 +58,15 @@ class Comment extends Component {
                 <Col md={12}>
 
 
-                <Label htmlFor="name">Your Name</Label>
-                <Control.text model=".name" id="name" name="name"
+                <Label htmlFor="author">Your Name</Label>
+                <Control.text model=".author" id="author" name="author"
                   className="form-control" 
                   validators={{
                       minLength: minLength(3), maxLength: maxLength(15)
                   }}/>
                 <Errors
                 className="text-danger"
-                model=".name"
+                model=".author"
                 show="touched"
                 messages={{
                     minLength: 'Must be greater than 2 characters',
@@ -77,8 +77,8 @@ class Comment extends Component {
 
               <Row className="form-group">
                 <Col md={12}>
-                <Label htmlFor="message">Comment</Label>
-                <Control.textarea model=".message" id="message" name="message"
+                <Label htmlFor="comment">Comment</Label>
+                <Control.textarea model=".comment" id="comment" name="comment"
                   rows="6"
                   className="form-control" />
                 </Col>
