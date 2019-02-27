@@ -83,7 +83,7 @@ class Comment extends Component {
                   className="form-control" />
                 </Col>
               </Row>
-              <Button type="submit" color="primary" onClick={this.toggleModal}>Login</Button>
+              <Button type="submit" color="primary" onClick={this.toggleModal}>Submit</Button>
             </LocalForm>
           </ModalBody>
         </Modal>
