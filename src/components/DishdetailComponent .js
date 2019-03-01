@@ -73,7 +73,7 @@ import { baseUrl } from '../shared/baseUrl';
                   <CardTitle>Comments</CardTitle>
                   <RenderComments comments={props.comments} />
                   <CommentForm comments={props.comments}
-                    addComment={props.addComment}
+                    postComment={props.postComment}
                     dishId={props.dish.id}/>
                 </Card>
               </div>
