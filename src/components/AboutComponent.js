@@ -2,26 +2,44 @@ import React from 'react';
 import { Breadcrumb, BreadcrumbItem, Card, CardBody, CardHeader, Media } from 'reactstrap';
 import { Link } from 'react-router-dom';
 
-function RenderLeader({leader}){
+import { Loading } from './LoadingComponent';
+import { baseUrl } from '../shared/baseUrl';
+
+import { Fade, Stagger } from 'react-animation-components';
+
+function RenderLeader({leader, isLoading, errMess}){
+  if (isLoading) {
+    return(
+            <Loading />
+    );
+  }
+  else if (errMess) {
+      return(
+              <h4>{errMess}</h4>
+      );
+  }
+  else {  
   const leaders = leader.map((lead) => {
     return (
-      <div key={lead.id} className="row-content">
-        <Media>
-          <Media left middle>
-            <Media object src={lead.image} alt={lead.name} />
-          </Media>
+        <div key={lead.id} className="row-content">
+          <Fade in>
+            <Media>
+              <Media left middle>
+                <Media object src={baseUrl + lead.image} alt={lead.name} />
+              </Media>
 
-          <Media body className="ml-5">
-            <Media heading>{lead.name}</Media>
-            <h3>{lead.designation}</h3>
-            <p>{lead.description}</p>
-          </Media>
-        </Media>
-      </div>
+              <Media body className="ml-5">
+                <Media heading>{lead.name}</Media>
+                <h3>{lead.designation}</h3>
+                <p>{lead.description}</p>
+              </Media>
+            </Media>
+          </Fade>
+        </div>
     );
   });
-
   return leaders;
+  }
 }
 
 function About(props) {
@@ -82,7 +100,11 @@ function About(props) {
           <h2>Corporate Leadership</h2>
         </div>
         <div className="col-12">
-          <RenderLeader leader={props.leaders} />
+          {/* <RenderLeader leader={props.leaders} /> */}
+          
+          <Stagger in>
+            <RenderLeader leader={props.leaders.leaders}  isLoading={props.leaders.isLoading} errMess={props.leaders.leaderErrMess}  />
+          </Stagger>
         </div>
       </div>
     </div>
